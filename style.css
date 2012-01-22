@@ -1,6 +1,6 @@
 /*
  * Theme Name: Bicicletada Curitiba
- * Theme URI: http://bicicletadacuritiba.org/
+ * Theme URI: http://github.com/viniciusmassuchetto/bicicletada-curitiba
  * Description: Tema para o site da Bicicletada de Curitiba.
  * Version: 1.0
  * Author: Vinicius Massuchetto
@@ -18,6 +18,11 @@ body { background:url('img/bike-bg.jpg'); }
 #header { height:110px !important; margin-bottom:10px !important; background-image: url("img/header.jpg") !important; }
 #header #nav { margin-top:79px !important; }
 #header #search-bar { display:none; }
+
+/* Rodapé */
+
+#site-generator { margin-bottom:3px; }
+.credits { text-align:center; margin-top:3px; }
 
 /* Posts */
 

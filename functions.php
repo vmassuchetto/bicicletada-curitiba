@@ -78,6 +78,15 @@ function custom_footer() {
     <?php
 }
 
+// Insere créditos no rodapé
+
+add_action('bp_footer', 'custom_bp_footer');
+function custom_bp_footer() {
+    ?>
+    <div class="credits"><p>Tema da <a target="_blank" href="http://github.com/viniciusmassuchetto/bicicletada-curitiba">Bicicletada Curitiba</a></p></div>
+    <?php
+}
+
 // Mostra os botões de compartilhamento nos posts, abaixo da foto do perfil do autor
 
 function share_box() {
