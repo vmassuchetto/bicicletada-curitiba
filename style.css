@@ -62,6 +62,8 @@ table.forum p.topic-meta img.avatar { display:none; }
 .group-forum .post-content { margin-left:80px !important; }
 .group-forum-topic .ass-topic-subscribe { margin:15px 0 !important; }
 
+.topic-tags { float:static !important; margin-top:0px !important; }
+
 /* Widgets do WordPress */
 
 .widget_search form { text-align:center; }
