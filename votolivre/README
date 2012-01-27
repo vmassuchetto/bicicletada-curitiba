@@ -1,0 +1,41 @@
+Contador de votos para o VotoLivre.org
+Contato: Vinicius Massuchetto <viniciusmassuchetto@gmail.com>
+
+Requisitos:
+
+    * PHP 4 ou superior
+    * Bibliioteca GD para PHP
+
+
+Funcionamento:
+
+    O script `img.php` consulta a página do Voto Livre e extrai a contagem
+    de votos, gerando uma saída binária que corresponde ao banner de
+    contagem em JPG.
+
+    O banner é gerado somente uma vez por hora de acordo com a visitação dos
+    usuários. A imagem de cache fica armazenada no arquivo `img-cache.jpg`.
+
+    É importante que o design da página do Voto Livre não mude, caso
+    contrário o script não conseguirá extrair a contagem segundo a expressão
+    regular `<h1>([0-9]*)<\/h1>`.
+
+
+Arquivos:
+
+    img-bg.jpg          Arte base para o contador que serve de fundo para a
+                        sobreposição dos números.
+
+    img-cache.jpg       Imagem de cache gerada uma vez por hora.
+
+    freesansbold.ttf    Fonte a ser utilizada para os números do contador.
+
+    img.php             Script a gerar a imagem em modo binário e ser
+                        referenciado em HTML. Por exemplo:
+                        <img src="img.php" />
+
+    img.htm             Exemplo pronto de como apresentar o contador para
+                        cópia pelos usuários do site. O endeço do atributo
+                        `value` da tag `input` deve ser corrigido a fim de
+                        apontar para o local em que o arquivo `img.php`
+                        for colocado.
