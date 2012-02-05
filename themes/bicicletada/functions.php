@@ -97,7 +97,7 @@ function share_box() {
     <div class="share-box">
 
         <div class="box identica">
-            <iframe height="61" width="61" scrolling="no" frameborder="0" src="http://www.tildehash.com/identishare.php?noscript&title=<?php echo $p->post_title . ' ' . get_permalink($post->ID); ?>&style2" border="0" marginheight="0" marginwidth="0" allowtransparency="true" style="width:55px; height:70px;"></iframe>
+            <iframe height="61" width="61" scrolling="no" frameborder="0" src="http://www.tildehash.com/identishare.php?noscript&title=<?php echo $post->post_title . ' ' . get_permalink($post->ID); ?>" border="0" marginheight="0" marginwidth="0" allowtransparency="true" style="width:55px; height:70px;"></iframe>
         </div>
 
         <div class="box facebook">
