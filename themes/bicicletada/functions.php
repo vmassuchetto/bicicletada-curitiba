@@ -156,11 +156,37 @@ function twitter_stripe_ajaxload() {
     $feed->handle_content_type();
     $item = $feed->get_item();
 
+    $tweet = str_replace('bicicletadactba: ', '', $item->get_title());
+    $tweet = text_insert_br($tweet);
+
     ?>
-    <a href="<?php echo $item->get_link(); ?>" title="<?php echo $item->get_title(); ?>" target="_blank"><?php echo str_replace('bicicletadactba: ', '', $item->get_title()); ?></a>
+    <a href="<?php echo $item->get_link(); ?>" title="<?php echo $item->get_title(); ?>" target="_blank"><?php echo $tweet; ?></a>
     <?php
 
     exit(1);
+}
+
+// Insere um '<br/>' na metade do texto
+
+function text_insert_br($text) {
+
+    $insert_limit = strlen($text)/2;
+    $text_array = explode(' ', $text);
+
+    $len = 0;
+    $text = array();
+    $inserted = false;
+
+    foreach($text_array as $word) {
+        $len += strlen($word);
+        if ($len > $insert_limit && !$inserted) {
+            $text[] = '<br/>';
+            $inserted = true;
+        }
+        $text[] = $word;
+    }
+
+    return implode($text, ' ');
 }
 
 // Faixa abaixo do título dos fóruns
