@@ -13,6 +13,7 @@ Versões
 *   [Contact Form 7](http://contactform7.com/): 3.0.2.1
 *   [CubePoints](http://cubepoints.com): 3.1
 *   [CubePoints Buddypress Integration](http://blog.slyspyder.com/2010/04/21/cubepoints-buddypress-integration-wordpress-plugin/): 1.9.8.3
+*   [Get The Image](http://justintadlock.com/archives/2008/05/27/get-the-image-wordpress-plugin): 0.7
 *   [Lazy Load](): 0.1
 *   [OPML Importer](http://wordpress.org/extend/plugins/opml-importer/): 0.2
 *   [phpBB to BuddyPress Importer](http://vinicius.soylocoporti.org/phpbb-to-buddypress-importer): 0.1

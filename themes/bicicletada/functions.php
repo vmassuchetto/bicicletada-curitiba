@@ -10,6 +10,29 @@ function custom_css() {
     <?php
 }
 
+add_action('wp_head', 'facebook_meta');
+function facebook_meta() {
+
+    if (!function_exists('get_the_image'))
+        return false;
+
+    global $post;
+    setup_postdata($post);
+
+    $options = array(
+        'post_id' => get_the_ID(),
+        'echo' => false,
+        'format' => 'array'
+    );
+    $img = get_the_image($options);
+    ?>
+    <meta property="og:title" content="<?php bloginfo('name'); ?> | <?php the_title(); ?>" />
+    <meta property="og:description" content="<?php echo strip_tags(get_the_excerpt()); ?>" />
+    <meta property="og:image" content="<?php echo $img['url']; ?>" />
+    <?php
+}
+
+
 // Transforma a página inicial dos fórums na listagem de tópicos
 
 add_action('bp_init', 'forum_redirect');
