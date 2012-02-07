@@ -23,7 +23,8 @@ function facebook_meta() {
         'post_id' => get_the_ID(),
         'echo' => false,
         'format' => 'array',
-        'image_scan' => true
+        'image_scan' => true,
+        'default_image' => get_stylesheet_directory_uri() . '/img/default-facebook.jpg'
     );
     $img = get_the_image($options);
     ?>
