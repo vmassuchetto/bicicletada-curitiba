@@ -22,7 +22,8 @@ function facebook_meta() {
     $options = array(
         'post_id' => get_the_ID(),
         'echo' => false,
-        'format' => 'array'
+        'format' => 'array',
+        'image_scan' => true
     );
     $img = get_the_image($options);
     ?>
