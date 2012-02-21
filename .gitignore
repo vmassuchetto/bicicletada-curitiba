@@ -1,10 +1,9 @@
-/*
-/*/
-
-!.gitignore
-!themes
-!plugins
-!votolivre
-
 *~
 *.swp
+.htaccess
+bb-config*
+wp-config*
+wp-content/cache
+wp-content/files
+wp-content/upgrade
+wp-content/uploads
