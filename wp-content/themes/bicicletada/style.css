@@ -34,13 +34,28 @@ body { background:url('img/bike-bg.jpg'); }
 .share-box .googleplus { display:inline-block; width:50px; }
 .postmetadata .tags { clear:left; }
 
-/* Twitter Stripe */
+/* Header Stripes */
 
-.twitter-stripe { margin-bottom:10px; background:#FFCE26 url('img/twitter.jpg') no-repeat 25px 15px; height:40px; border-radius: 6px 6px 6px 6px; overflow: hidden; position: relative; padding:15px 15px 15px 70px; text-align:center; }
-.twitter-stripe a { font-size:15px; text-decoration:none; color:#505050; font-weight:bold; }
-.twitter-stripe a:hover { color:#101010; }
+.header-stripe { margin-bottom:10px; border-radius: 6px 6px 6px 6px; overflow: hidden; position: relative; padding:10px 10px 10px 70px; }
 
-/* Forum Stripe */
+/* Forum Header Stripe */
+
+.forum-header-stripe { background:#505050 url('img/forum.jpg') no-repeat 25px 10px; padding-left:85px; overflow:hidden; position:relative; }
+.forum-header-stripe img { border:1px solid #EAEAEA; margin:0 10px 0 0; }
+.forum-header-stripe a { color:#EAEAEA; font-weight:bold; padding:0; margin:0; text-decoration:none; }
+.forum-header-stripe a.topic-title { font-size:20px; line-height:1.3em; }
+.forum-header-stripe-wrap { width:840px; height:45px; overflow:hidden; }
+.forum-header-stripe ul { width:10000em; }
+.forum-header-stripe li { width:840px; color:#EAEAEA; font-size:13px; line-height:1em; }
+.forum-header-next { position:absolute; right:10px; top:11px; width:20px; height:43px; background:transparent url('img/forum-next.jpg') no-repeat 0 0; }
+
+/* Twitter Header Stripe */
+
+.twitter-header-stripe { text-align:center; background:#FFCE26 url('img/twitter.jpg') no-repeat 25px 15px; height:40px; }
+.twitter-header-stripe a { font-size:14px; text-decoration:none; color:#505050; font-weight:bold; }
+.twitter-header-stripe a:hover { color:#101010; }
+
+/* Forum Warning Stripe */
 
 .forum-stripe { color:red; font-weight:bold; }
 

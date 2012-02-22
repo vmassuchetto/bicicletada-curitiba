@@ -1,10 +1,17 @@
 <?php
 
+// Javascript
+
+add_action('wp_enqueue_scripts', 'custom_scripts');
+function custom_scripts() {
+    wp_enqueue_script('jquery');
+    wp_enqueue_script('jquery-jcarousel', get_stylesheet_directory_uri() . '/js/jquery.jcarousel.min.js');
+}
+
 // Favicon
 
-add_action('wp_head', 'custom_css');
-function custom_css() {
-    global $bc_url;
+add_action('wp_head', 'custom_head');
+function custom_head() {
     ?>
     <link rel="shortcut icon" href="<?php echo get_stylesheet_directory_uri(); ?>/img/favicon.ico" type="image/x-icon">
     <?php
@@ -142,12 +149,66 @@ function share_box() {
 
 }
 
+// Insere últimos posts do fórum logo abaixo do cabeçalho
+
+add_action('bp_after_header', 'forum_header_stripe');
+function forum_header_stripe() {
+    global $wpdb;
+    $sql = "
+        SELECT
+            f.forum_name,
+            f.forum_slug,
+            t.topic_title,
+            t.topic_slug,
+            t.topic_time,
+            u.ID user_id,
+            u.user_login,
+            u.display_name user_name
+        FROM wp_bb_topics t
+        INNER JOIN wp_bb_forums f ON f.forum_id = t.forum_id
+        INNER JOIN wp_users u ON u.ID = t.topic_last_poster
+        ORDER BY t.topic_time DESC
+        LIMIT 10
+    ";
+    ?>
+    <div class="header-stripe forum-header-stripe">
+    <div class="forum-header-stripe-wrap">
+    <ul>
+    <?php foreach ($wpdb->get_results($sql) as $t) : ?>
+        <?php
+            $forum_link = get_bloginfo('url') . '/forum/' . $t->forum_slug . '/forum';
+            $topic_link = $forum_link . '/topic/' . $t->topic_slug;
+            $user_link = get_bloginfo('url') . '/membros/' . $t->user_login;
+            $topic_time = date('d/m\ \à\s\ H:i', strtotime($t->topic_time));
+        ?>
+        <li>
+            <a href="<?php echo $user_link; ?>" title="<?php echo $t->user_name; ?>"><?php echo get_avatar($t->user_id, 40, false, $t->user_name); ?></a>
+            <a class="topic-title" href="<?php echo $topic_link; ?>" title="<?php echo $t->topic_title; ?>"><?php echo $t->topic_title; ?></a><br/>
+            <a class="forum-title" href="<?php echo $forum_link; ?>" title="<?php echo $t->forum_name; ?>"><?php echo $t->forum_name; ?></a>&nbsp;(<?php echo $topic_time; ?>)
+        </li>
+    <?php endforeach; ?>
+    </ul>
+    </div>
+    <a class="forum-header-next" href="javascript:jQuery('.forum-header-stripe ul').jcarousel('next');"></a>
+    </div>
+    <script type="text/javascript">
+        jQuery('.forum-header-stripe ul').jcarousel({
+            animation: 'slow',
+            auto: 5,
+            scroll: 1,
+            wrap: 'circular',
+            itemFallbackDimension: 840,
+        });
+    </script>
+    <?php
+}
+
 // Insere faixa do Twitter logo abaixo do cabeçalho
 
-add_action('bp_after_header', 'twitter_stripe');
-function twitter_stripe() {
+//add_action('bp_after_header', 'twitter_header_stripe');
+function twitter_header_stripe() {
     ?>
-    <div class="twitter-stripe">
+    <div class="header-stripe twitter-header-stripe">
         <a href="javascript:void(0)" title="Carregando Último Tweet" class="loading">Carregando Último Tweet</a>
     </div>
     <script type="text/javascript">
