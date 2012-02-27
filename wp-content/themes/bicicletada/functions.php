@@ -36,7 +36,7 @@ function facebook_meta() {
     $img = get_the_image($options);
     ?>
     <meta property="og:title" content="<?php bloginfo('name'); ?> | <?php the_title(); ?>" />
-    <meta property="og:description" content="<?php echo strip_tags(get_the_excerpt()); ?>" />
+    <meta property="og:description" content="<?php echo strip_tags($post->post_content); ?>" />
     <meta property="og:image" content="<?php echo $img['url']; ?>" />
     <?php
 }
