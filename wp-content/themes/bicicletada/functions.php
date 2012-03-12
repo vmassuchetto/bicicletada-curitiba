@@ -17,6 +17,24 @@ function custom_head() {
     <?php
 }
 
+function strlimit ($text, $limit = 60) {
+
+    $len = 0;
+    $out = array();
+    $text = explode (' ', strip_tags($text));
+
+    foreach($text as $word) {
+        $len += strlen($word);
+        if ($len > $limit) {
+            $out[] = '[...]';
+            break;
+        }
+        $out[] = $word;
+    }
+
+    return implode (' ', $out);
+}
+
 add_action('wp_head', 'facebook_meta');
 function facebook_meta() {
 
@@ -36,7 +54,7 @@ function facebook_meta() {
     $img = get_the_image($options);
     ?>
     <meta property="og:title" content="<?php bloginfo('name'); ?> | <?php the_title(); ?>" />
-    <meta property="og:description" content="<?php echo strip_tags($post->post_content); ?>" />
+    <meta property="og:description" content="<?php echo htmlspecialchars(strlimit($post->post_content, 140)); ?>" />
     <meta property="og:image" content="<?php echo $img['url']; ?>" />
     <?php
 }
