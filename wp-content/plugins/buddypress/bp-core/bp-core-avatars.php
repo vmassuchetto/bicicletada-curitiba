@@ -584,7 +584,7 @@ function bp_core_fetch_avatar_filter( $avatar, $user, $size, $default, $alt = ''
 		$id = $user;
 
 	// If passed a string and that string returns a user, get the $id
-	else if ( is_string( $user ) && ( $user_by_email = get_user_by_email( $user ) ) )
+	else if ( is_string( $user ) && ( $user_by_email = get_user_by( 'email', $user ) ) )
 		$id = $user_by_email->ID;
 
 	// If somehow $id hasn't been assigned, return the result of get_avatar
@@ -662,6 +662,11 @@ function bp_core_avatar_upload_path() {
 		if ( defined( 'BP_AVATAR_UPLOAD_PATH' ) ) {
 			$basedir = BP_AVATAR_UPLOAD_PATH;
 		} else {
+			if ( !bp_is_root_blog() ) {
+				// Switch dynamically in order to support BP_ENABLE_MULTIBLOG
+				switch_to_blog( bp_get_root_blog_id() );
+			}
+			
 			// Get upload directory information from current site
 			$upload_dir = wp_upload_dir();
 		
@@ -671,11 +676,10 @@ function bp_core_avatar_upload_path() {
 		
 			} else {
 				$basedir = $upload_dir['basedir'];
-		
-				// If multisite, and current blog does not match root blog, make adjustments
-				if ( is_multisite() && bp_get_root_blog_id() != get_current_blog_id() )
-					$basedir = get_blog_option( bp_get_root_blog_id(), 'upload_path' );
 			}
+			
+			// Will bail if not switched
+			restore_current_blog();
 		}
 		
 		// Stash in $bp for later use

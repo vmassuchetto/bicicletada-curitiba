@@ -3,10 +3,10 @@
 Plugin Name: CubePoints Buddypress Integration
 Plugin URI: http://blog.slyspyder.com/2010/04/21/cubepoints-buddypress-integration-wordpress-plugin/
 Description: Adds CubePoints support to Buddypress. Reward members using your BuddyPress portion of your website by giving them points and awards!
-Version: 1.9.8.3
-Revision Date: December 16, 2011
+Version: 1.9.8.4
+Revision Date: February 6, 2012
 Requires at least: WP 3.1, BuddyPress 1.2.5.2, Cubepoints 3.0.1
-Tested up to: WP 3.2.1, BuddyPress 1.5.1, CubePoints 3.1
+Tested up to: WP 3.3.1, BuddyPress 1.5.3.1, CubePoints 3.1
 License: GNU General Public License 2.0 (GPL) http://www.gnu.org/licenses/gpl.html
 Author: Tosh Hatch
 Author URI: http://www.SlySpyder.com
@@ -14,7 +14,7 @@ Contributors: @xberserker
 Network: false
 */
 
-define ( 'BP_CUBEPOINT_VERSION', '1.9.8.3' );
+define ( 'BP_CUBEPOINT_VERSION', '1.9.8.4' );
 
 define('CP_BUDDYPRESS_PATH', WP_PLUGIN_URL.'/'.str_replace(basename( __FILE__),"",plugin_basename(__FILE__)));
 

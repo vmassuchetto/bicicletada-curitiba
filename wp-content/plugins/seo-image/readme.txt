@@ -3,10 +3,10 @@ Contributors: freediver
 Donate link: https://www.networkforgood.org/donation/MakeDonation.aspx?ORGID2=920155875
 Tags: seo, images, Post, admin, google
 Requires at least: 2.7
-Tested up to: 3.3
+Tested up to: 3.3.1
 Stable tag: trunk
 
-SEO Friendly Images automatically adds alt and title attributes to all your images. Improves traffic from search engines and makes the image tags W3C/xHTML valid as well.
+SEO Friendly Images automatically adds alt and title attributes to all your images improving traffic from search engines.
 
 == Description ==
 
@@ -17,9 +17,17 @@ ALT attribute is important part of search engine optimization. It describes your
 
 TITLE attribute play lesser role but is important for visitors as this text will automatically appear in the tooltip when mouse is over the image.
 
-Plugin by Vladimir Prelovac. Need <a href="http://www.prelovac.com/vladimir/services">WordPress Consulting Service</a>?
+Plugin by [Vladimir Prelovac](http://www.prelovac.com/vladimir/ "Vladimir Prelovac"). 
+
+If you like what I do in WordPress, you will also like [ManageWP](http://managewp.com "Manage WordPress sites") service.
 
 == Changelog ==
+
+= 2.7.1 =
+* Minor issues fixed (thanks Dewey Bushaw)
+
+= 2.7.0 =
+* Introduced the <a href="http://www.prelovac.com/products/seo-friendly-images">premium version</a>
 
 = 2.6.3 =
 * Display multiple categories (thanks to Charles Blaxland)

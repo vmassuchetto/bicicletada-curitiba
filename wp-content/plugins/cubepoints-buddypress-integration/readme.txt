@@ -4,7 +4,7 @@ Donate Link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: cubepoints, buddypress, points, comments, reply, update, groups, creation, reward, friends, request, forum, avatar, buddypress links, message, vote, buddypress gifts, gifts, BP Gallery, photo, video, audio, upload, admin bar, awards, trophies, trophy, achievements, spam, ps3, xbox 360, xbox, sony, microsoft, lottery, giveaway, bet, betting, gamble, gambling, pick, winners, random, bbPress, bbPress 2.0
 Requires at least: 2.9.2 & Buddypress 1.2.5.2 & Cubepoints 3.0.1
 Tested up to: 3.2.1
-Stable tag: 1.9.8.3
+Stable tag: 1.9.8.4
 
 Adds CubePoints support to Buddypress. Reward members using your BuddyPress portion of your website by giving them points and awards!
 
@@ -147,13 +147,18 @@ BuddyPress calls 2 functions when creating a forum topic. So think of how much y
 5. Point Blocker! Blocks users from earning points on your BuddyPress website.
 6. Uses the standard CubePoints Logging System.
 7. Awards System
-8. If you have the CubePoints Giveaway & Betting System installed. It displays the number of lotteries or bets they have not entered, in the top BuddyPress admin bar.
+8. If you have the CubePoints Giveaway & Betting System installed. It displays the number of giveaways or bets they have not entered, in the top BuddyPress admin bar.
 
 == Upgrade Notice ==
 
 * CubePoints Buddypress Integration 1.9+ Requires at least CubePoints 3.0
 
 == Changelog ==
+
+**Version 1.9.8.4**
+
+* Code optimization
+* You will need to update to version 1.6 of the Cubepoints Giveaway & Betting System for it to work properly with the BuddyPress admin bar.
 
 **Version 1.9.8.3**
 

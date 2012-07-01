@@ -17,16 +17,20 @@ if ( !defined( 'ABSPATH' ) ) exit;
  * @since BuddyPress (1.5.2)
  */
 function bp_members_admin_bar_version_check() {
-	
-	if ( '3.2' == bp_get_major_wp_version() ) {
-		add_action( 'bp_setup_admin_bar', 'bp_members_admin_bar_my_account_menu',    4    );
-		add_action( 'bp_setup_admin_bar', 'bp_members_admin_bar_notifications_menu', 5    );
-		add_action( 'bp_setup_admin_bar', 'bp_members_admin_bar_user_admin_menu',    99   );
-		add_action( 'bp_setup_admin_bar', 'bp_members_admin_bar_my_account_logout',  9999 );
-	} elseif ( '3.3' == bp_get_major_wp_version() ) {
-		add_action( 'bp_setup_admin_bar', 'bp_members_admin_bar_my_account_menu',    4   );
-		add_action( 'bp_setup_admin_bar', 'bp_members_admin_bar_notifications_menu', 5   );
-		add_action( 'admin_bar_menu',     'bp_members_admin_bar_user_admin_menu',    400 );
+	switch( bp_get_major_wp_version() ) {
+		case 3.2 :
+			add_action( 'bp_setup_admin_bar', 'bp_members_admin_bar_my_account_menu',    4    );
+			add_action( 'bp_setup_admin_bar', 'bp_members_admin_bar_notifications_menu', 5    );
+			add_action( 'bp_setup_admin_bar', 'bp_members_admin_bar_user_admin_menu',    99   );
+			add_action( 'bp_setup_admin_bar', 'bp_members_admin_bar_my_account_logout',  9999 );
+			break;
+		case 3.3 :
+		case 3.4 :
+		default  :
+			add_action( 'bp_setup_admin_bar', 'bp_members_admin_bar_my_account_menu',    4   );
+			add_action( 'bp_setup_admin_bar', 'bp_members_admin_bar_notifications_menu', 5   );
+			add_action( 'admin_bar_menu',     'bp_members_admin_bar_user_admin_menu',    400 );
+			break;		
 	}
 }
 add_action( 'admin_bar_menu', 'bp_members_admin_bar_version_check', 4 );
@@ -37,7 +41,7 @@ add_action( 'admin_bar_menu', 'bp_members_admin_bar_version_check', 4 );
  * @since BuddyPress (r4151)
  */
 function bp_members_admin_bar_my_account_menu() {
-	global $bp, $wp_admin_bar, $wp_version;
+	global $bp, $wp_admin_bar;
 
 	// Bail if this is an ajax request
 	if ( defined( 'DOING_AJAX' ) )
@@ -46,7 +50,7 @@ function bp_members_admin_bar_my_account_menu() {
 	// Logged in user
 	if ( is_user_logged_in() ) {
 
-		if ( '3.2' == bp_get_major_wp_version() ) {
+		if ( 3.2 == bp_get_major_wp_version() ) {
 
 			// User avatar
 			$avatar = bp_core_fetch_avatar( array(
@@ -121,7 +125,7 @@ function bp_members_admin_bar_user_admin_menu() {
 	if ( !current_user_can( 'edit_users' ) || bp_is_my_profile() )
 		return false;
 
-	if ( '3.2' == bp_get_major_wp_version() ) {
+	if ( 3.2 == bp_get_major_wp_version() ) {
 
 		// User avatar
 		$avatar = bp_core_fetch_avatar( array(
@@ -141,7 +145,7 @@ function bp_members_admin_bar_user_admin_menu() {
 			'href'  => bp_displayed_user_domain()
 		) );
 
-	} elseif ( '3.3' == bp_get_major_wp_version() ) {
+	} elseif ( 3.3 <= bp_get_major_wp_version() ) {
 		
 		// Unique ID for the 'My Account' menu
 		$bp->user_admin_menu_id = 'user-admin';
@@ -217,7 +221,7 @@ function bp_members_admin_bar_notifications_menu() {
 		$menu_title = __( 'Notifications', 'buddypress' );
 	}
 
-	if ( '3.2' == bp_get_major_wp_version() ) {
+	if ( 3.2 == bp_get_major_wp_version() ) {
 
 		// Add the top-level Notifications button
 		$wp_admin_bar->add_menu( array(
@@ -226,7 +230,7 @@ function bp_members_admin_bar_notifications_menu() {
 			'href'  => bp_loggedin_user_domain()
 		) );
 
-	} elseif ( '3.3' == bp_get_major_wp_version() ) {
+	} elseif ( 3.3 <= bp_get_major_wp_version() ) {
 		
 		// Add the top-level Notifications button
 		$wp_admin_bar->add_menu( array(

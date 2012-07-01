@@ -139,7 +139,7 @@ function my_bp_hide_group_create_button() {
  *
  * Display points earned in the admin bar
  * 
- *  @version 1.9.8.1
+ *  @version 1.9.8.4
  *  @since 1.0
  */
 function my_bp_admin_bar_points() {
@@ -152,86 +152,17 @@ function my_bp_admin_bar_points() {
 	    
 		if(function_exists('cp_lottery_show_logs')){			
 		  // Lottery
-		  if(get_option('cp_lottery1_onoff')) {
-		   $cp_lottery1_userid = get_option('cp_lottery1_userid');
-		   $cp_lottery1_userid =  get_userdatabylogin($cp_lottery1_userid);
-		   $cp_lottery1_pt_entries = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_lottery1_userid->ID."' AND type = 'cp_lottery1ptentry' AND data = ".$current_user->ID));
-		  }
-		  if(get_option('cp_lottery2_onoff')) {
-		   $cp_lottery2_userid = get_option('cp_lottery2_userid');
-		   $cp_lottery2_userid =  get_userdatabylogin($cp_lottery2_userid);
-		   $cp_lottery2_pt_entries = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_lottery2_userid->ID."' AND type = 'cp_lottery2ptentry' AND data = ".$current_user->ID));
-		  }
-		  if(get_option('cp_lottery3_onoff')) {
-		   $cp_lottery3_userid = get_option('cp_lottery3_userid');
-		   $cp_lottery3_userid =  get_userdatabylogin($cp_lottery3_userid);
-		   $cp_lottery3_pt_entries = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_lottery3_userid->ID."' AND type = 'cp_lottery3ptentry' AND data = ".$current_user->ID));
-		  }
-		  if(get_option('cp_lottery4_onoff')) {
-		   $cp_lottery4_userid = get_option('cp_lottery4_userid');
-		   $cp_lottery4_userid =  get_userdatabylogin($cp_lottery4_userid);
-		   $cp_lottery4_pt_entries = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_lottery4_userid->ID."' AND type = 'cp_lottery4ptentry' AND data = ".$current_user->ID));
-		  }
-		  if(get_option('cp_lottery5_onoff')) {
-		   $cp_lottery5_userid = get_option('cp_lottery5_userid');
-		   $cp_lottery5_userid =  get_userdatabylogin($cp_lottery5_userid);
-		   $cp_lottery5_pt_entries = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_lottery5_userid->ID."' AND type = 'cp_lottery5ptentry' AND data = ".$current_user->ID));
-		  }
+		  if(get_option('cp_lottery1_onoff')) { $cp_lottery1_pt_entries = get_user_meta($current_user->ID, 'lottery1_ticket', true); }
+		  if(get_option('cp_lottery2_onoff')) { $cp_lottery2_pt_entries = get_user_meta($current_user->ID, 'lottery2_ticket', true); }
+		  if(get_option('cp_lottery3_onoff')) { $cp_lottery3_pt_entries = get_user_meta($current_user->ID, 'lottery3_ticket', true); }
+		  if(get_option('cp_lottery4_onoff')) { $cp_lottery4_pt_entries = get_user_meta($current_user->ID, 'lottery4_ticket', true); }
+		  if(get_option('cp_lottery5_onoff')) { $cp_lottery5_pt_entries = get_user_meta($current_user->ID, 'lottery5_ticket', true); }
 		  // Gamble
-		  if(get_option('cp_gamble1_onoff')) {
-		   $cp_gamble1_acct = get_option('cp_gamble1_acct');
-		   $cp_gamble1_acct =  get_userdatabylogin($cp_gamble1_acct);
-		   $cp_gamble1_bet1_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble1_acct->ID."' AND type = 'cp_gamble1_bet1_acct' AND data = ".$current_user->ID));
-		   $cp_gamble1_bet2_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble1_acct->ID."' AND type = 'cp_gamble1_bet2_acct' AND data = ".$current_user->ID));
-		   $cp_gamble1_bet3_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble1_acct->ID."' AND type = 'cp_gamble1_bet3_acct' AND data = ".$current_user->ID));
-		   $cp_gamble1_bet4_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble1_acct->ID."' AND type = 'cp_gamble1_bet4_acct' AND data = ".$current_user->ID));
-		   $cp_gamble1_bet5_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble1_acct->ID."' AND type = 'cp_gamble1_bet5_acct' AND data = ".$current_user->ID));
-		   $cb_g1_all_ur_bets = $cp_gamble1_bet1_results + $cp_gamble1_bet2_results + $cp_gamble1_bet3_results + $cp_gamble1_bet4_results + $cp_gamble1_bet5_results;
-		  }
-		  
-		  if(get_option('cp_gamble2_onoff')) {
-		   $cp_gamble2_acct = get_option('cp_gamble2_acct');
-		   $cp_gamble2_acct =  get_userdatabylogin($cp_gamble2_acct);
-		   $cp_gamble2_bet1_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble2_acct->ID."' AND type = 'cp_gamble2_bet1_acct' AND data = ".$current_user->ID));
-		   $cp_gamble2_bet2_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble2_acct->ID."' AND type = 'cp_gamble2_bet2_acct' AND data = ".$current_user->ID));
-		   $cp_gamble2_bet3_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble2_acct->ID."' AND type = 'cp_gamble2_bet3_acct' AND data = ".$current_user->ID));
-		   $cp_gamble2_bet4_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble2_acct->ID."' AND type = 'cp_gamble2_bet4_acct' AND data = ".$current_user->ID));
-		   $cp_gamble2_bet5_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble2_acct->ID."' AND type = 'cp_gamble2_bet5_acct' AND data = ".$current_user->ID));
-		   $cb_g2_all_ur_bets = $cp_gamble2_bet1_results + $cp_gamble2_bet2_results + $cp_gamble2_bet3_results + $cp_gamble2_bet4_results + $cp_gamble2_bet5_results;
-		  }
-		  
-		  if(get_option('cp_gamble3_onoff')) {
-		   $cp_gamble3_acct = get_option('cp_gamble3_acct');
-		   $cp_gamble3_acct =  get_userdatabylogin($cp_gamble3_acct);
-		   $cp_gamble3_bet1_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble3_acct->ID."' AND type = 'cp_gamble3_bet1_acct' AND data = ".$current_user->ID));
-		   $cp_gamble3_bet2_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble3_acct->ID."' AND type = 'cp_gamble3_bet2_acct' AND data = ".$current_user->ID));
-		   $cp_gamble3_bet3_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble3_acct->ID."' AND type = 'cp_gamble3_bet3_acct' AND data = ".$current_user->ID));
-		   $cp_gamble3_bet4_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble3_acct->ID."' AND type = 'cp_gamble3_bet4_acct' AND data = ".$current_user->ID));
-		   $cp_gamble3_bet5_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble3_acct->ID."' AND type = 'cp_gamble3_bet5_acct' AND data = ".$current_user->ID));
-		   $cb_g3_all_ur_bets = $cp_gamble3_bet1_results + $cp_gamble3_bet2_results + $cp_gamble3_bet3_results + $cp_gamble3_bet4_results + $cp_gamble3_bet5_results;
-		  }
-		  
-		  if(get_option('cp_gamble4_onoff')) {
-		   $cp_gamble4_acct = get_option('cp_gamble4_acct');
-		   $cp_gamble4_acct =  get_userdatabylogin($cp_gamble4_acct);
-		   $cp_gamble4_bet1_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble4_acct->ID."' AND type = 'cp_gamble4_bet1_acct' AND data = ".$current_user->ID));
-		   $cp_gamble4_bet2_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble4_acct->ID."' AND type = 'cp_gamble4_bet2_acct' AND data = ".$current_user->ID));
-		   $cp_gamble4_bet3_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble4_acct->ID."' AND type = 'cp_gamble4_bet3_acct' AND data = ".$current_user->ID));
-		   $cp_gamble4_bet4_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble4_acct->ID."' AND type = 'cp_gamble4_bet4_acct' AND data = ".$current_user->ID));
-		   $cp_gamble4_bet5_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble4_acct->ID."' AND type = 'cp_gamble4_bet5_acct' AND data = ".$current_user->ID));
-		   $cb_g4_all_ur_bets = $cp_gamble4_bet1_results + $cp_gamble4_bet2_results + $cp_gamble4_bet3_results + $cp_gamble4_bet4_results + $cp_gamble4_bet5_results;
-		  }
-		  
-		  if(get_option('cp_gamble5_onoff')) {
-		   $cp_gamble5_acct = get_option('cp_gamble5_acct');
-		   $cp_gamble5_acct =  get_userdatabylogin($cp_gamble5_acct);
-		   $cp_gamble5_bet1_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble5_acct->ID."' AND type = 'cp_gamble5_bet1_acct' AND data = ".$current_user->ID));
-		   $cp_gamble5_bet2_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble5_acct->ID."' AND type = 'cp_gamble5_bet2_acct' AND data = ".$current_user->ID));
-		   $cp_gamble5_bet3_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble5_acct->ID."' AND type = 'cp_gamble5_bet3_acct' AND data = ".$current_user->ID));
-		   $cp_gamble5_bet4_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble5_acct->ID."' AND type = 'cp_gamble5_bet4_acct' AND data = ".$current_user->ID));
-		   $cp_gamble5_bet5_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble5_acct->ID."' AND type = 'cp_gamble5_bet5_acct' AND data = ".$current_user->ID));
-		   $cb_g5_all_ur_bets = $cp_gamble5_bet1_results + $cp_gamble5_bet2_results + $cp_gamble5_bet3_results + $cp_gamble5_bet4_results + $cp_gamble5_bet5_results;
-		  }
+		  if(get_option('cp_gamble1_onoff')) { $cb_g1_all_ur_bets = get_user_meta($current_user->ID, 'gamble1_bet_pts', true); }
+		  if(get_option('cp_gamble2_onoff')) { $cb_g2_all_ur_bets = get_user_meta($current_user->ID, 'gamble2_bet_pts', true); }
+		  if(get_option('cp_gamble3_onoff')) { $cb_g3_all_ur_bets = get_user_meta($current_user->ID, 'gamble3_bet_pts', true); }
+		  if(get_option('cp_gamble4_onoff')) { $cb_g4_all_ur_bets = get_user_meta($current_user->ID, 'gamble4_bet_pts', true); }
+		  if(get_option('cp_gamble5_onoff')) { $cb_g5_all_ur_bets = get_user_meta($current_user->ID, 'gamble5_bet_pts', true); }
 		  
 		  // If $lottery1on is 1 then that means they have at least 1 point entry. 
 		  if(get_option('cp_lottery1_onoff')) {
@@ -398,86 +329,17 @@ function my_bp_admin_bar_points() {
 		
 		if(function_exists('cp_lottery_show_logs')){			
 		  // Lottery
-		  if(get_option('cp_lottery1_onoff')) {
-		   $cp_lottery1_userid = get_option('cp_lottery1_userid');
-		   $cp_lottery1_userid =  get_userdatabylogin($cp_lottery1_userid);
-		   $cp_lottery1_pt_entries = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_lottery1_userid->ID."' AND type = 'cp_lottery1ptentry' AND data = ".$current_user->ID));
-		  }
-		  if(get_option('cp_lottery2_onoff')) {
-		   $cp_lottery2_userid = get_option('cp_lottery2_userid');
-		   $cp_lottery2_userid =  get_userdatabylogin($cp_lottery2_userid);
-		   $cp_lottery2_pt_entries = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_lottery2_userid->ID."' AND type = 'cp_lottery2ptentry' AND data = ".$current_user->ID));
-		  }
-		  if(get_option('cp_lottery3_onoff')) {
-		   $cp_lottery3_userid = get_option('cp_lottery3_userid');
-		   $cp_lottery3_userid =  get_userdatabylogin($cp_lottery3_userid);
-		   $cp_lottery3_pt_entries = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_lottery3_userid->ID."' AND type = 'cp_lottery3ptentry' AND data = ".$current_user->ID));
-		  }
-		  if(get_option('cp_lottery4_onoff')) {
-		   $cp_lottery4_userid = get_option('cp_lottery4_userid');
-		   $cp_lottery4_userid =  get_userdatabylogin($cp_lottery4_userid);
-		   $cp_lottery4_pt_entries = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_lottery4_userid->ID."' AND type = 'cp_lottery4ptentry' AND data = ".$current_user->ID));
-		  }
-		  if(get_option('cp_lottery5_onoff')) {
-		   $cp_lottery5_userid = get_option('cp_lottery5_userid');
-		   $cp_lottery5_userid =  get_userdatabylogin($cp_lottery5_userid);
-		   $cp_lottery5_pt_entries = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_lottery5_userid->ID."' AND type = 'cp_lottery5ptentry' AND data = ".$current_user->ID));
-		  }
+		  if(get_option('cp_lottery1_onoff')) { $cp_lottery1_pt_entries = get_user_meta($current_user->ID, 'lottery1_ticket', true); }
+		  if(get_option('cp_lottery2_onoff')) { $cp_lottery2_pt_entries = get_user_meta($current_user->ID, 'lottery2_ticket', true); }
+		  if(get_option('cp_lottery3_onoff')) { $cp_lottery3_pt_entries = get_user_meta($current_user->ID, 'lottery3_ticket', true); }
+		  if(get_option('cp_lottery4_onoff')) { $cp_lottery4_pt_entries = get_user_meta($current_user->ID, 'lottery4_ticket', true); }
+		  if(get_option('cp_lottery5_onoff')) { $cp_lottery5_pt_entries = get_user_meta($current_user->ID, 'lottery5_ticket', true); }
 		  // Gamble
-		  if(get_option('cp_gamble1_onoff')) {
-		   $cp_gamble1_acct = get_option('cp_gamble1_acct');
-		   $cp_gamble1_acct =  get_userdatabylogin($cp_gamble1_acct);
-		   $cp_gamble1_bet1_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble1_acct->ID."' AND type = 'cp_gamble1_bet1_acct' AND data = ".$current_user->ID));
-		   $cp_gamble1_bet2_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble1_acct->ID."' AND type = 'cp_gamble1_bet2_acct' AND data = ".$current_user->ID));
-		   $cp_gamble1_bet3_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble1_acct->ID."' AND type = 'cp_gamble1_bet3_acct' AND data = ".$current_user->ID));
-		   $cp_gamble1_bet4_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble1_acct->ID."' AND type = 'cp_gamble1_bet4_acct' AND data = ".$current_user->ID));
-		   $cp_gamble1_bet5_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble1_acct->ID."' AND type = 'cp_gamble1_bet5_acct' AND data = ".$current_user->ID));
-		   $cb_g1_all_ur_bets = $cp_gamble1_bet1_results + $cp_gamble1_bet2_results + $cp_gamble1_bet3_results + $cp_gamble1_bet4_results + $cp_gamble1_bet5_results;
-		  }
-		  
-		  if(get_option('cp_gamble2_onoff')) {
-		   $cp_gamble2_acct = get_option('cp_gamble2_acct');
-		   $cp_gamble2_acct =  get_userdatabylogin($cp_gamble2_acct);
-		   $cp_gamble2_bet1_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble2_acct->ID."' AND type = 'cp_gamble2_bet1_acct' AND data = ".$current_user->ID));
-		   $cp_gamble2_bet2_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble2_acct->ID."' AND type = 'cp_gamble2_bet2_acct' AND data = ".$current_user->ID));
-		   $cp_gamble2_bet3_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble2_acct->ID."' AND type = 'cp_gamble2_bet3_acct' AND data = ".$current_user->ID));
-		   $cp_gamble2_bet4_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble2_acct->ID."' AND type = 'cp_gamble2_bet4_acct' AND data = ".$current_user->ID));
-		   $cp_gamble2_bet5_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble2_acct->ID."' AND type = 'cp_gamble2_bet5_acct' AND data = ".$current_user->ID));
-		   $cb_g2_all_ur_bets = $cp_gamble2_bet1_results + $cp_gamble2_bet2_results + $cp_gamble2_bet3_results + $cp_gamble2_bet4_results + $cp_gamble2_bet5_results;
-		  }
-		  
-		  if(get_option('cp_gamble3_onoff')) {
-		   $cp_gamble3_acct = get_option('cp_gamble3_acct');
-		   $cp_gamble3_acct =  get_userdatabylogin($cp_gamble3_acct);
-		   $cp_gamble3_bet1_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble3_acct->ID."' AND type = 'cp_gamble3_bet1_acct' AND data = ".$current_user->ID));
-		   $cp_gamble3_bet2_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble3_acct->ID."' AND type = 'cp_gamble3_bet2_acct' AND data = ".$current_user->ID));
-		   $cp_gamble3_bet3_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble3_acct->ID."' AND type = 'cp_gamble3_bet3_acct' AND data = ".$current_user->ID));
-		   $cp_gamble3_bet4_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble3_acct->ID."' AND type = 'cp_gamble3_bet4_acct' AND data = ".$current_user->ID));
-		   $cp_gamble3_bet5_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble3_acct->ID."' AND type = 'cp_gamble3_bet5_acct' AND data = ".$current_user->ID));
-		   $cb_g3_all_ur_bets = $cp_gamble3_bet1_results + $cp_gamble3_bet2_results + $cp_gamble3_bet3_results + $cp_gamble3_bet4_results + $cp_gamble3_bet5_results;
-		  }
-		  
-		  if(get_option('cp_gamble4_onoff')) {
-		   $cp_gamble4_acct = get_option('cp_gamble4_acct');
-		   $cp_gamble4_acct =  get_userdatabylogin($cp_gamble4_acct);
-		   $cp_gamble4_bet1_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble4_acct->ID."' AND type = 'cp_gamble4_bet1_acct' AND data = ".$current_user->ID));
-		   $cp_gamble4_bet2_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble4_acct->ID."' AND type = 'cp_gamble4_bet2_acct' AND data = ".$current_user->ID));
-		   $cp_gamble4_bet3_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble4_acct->ID."' AND type = 'cp_gamble4_bet3_acct' AND data = ".$current_user->ID));
-		   $cp_gamble4_bet4_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble4_acct->ID."' AND type = 'cp_gamble4_bet4_acct' AND data = ".$current_user->ID));
-		   $cp_gamble4_bet5_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble4_acct->ID."' AND type = 'cp_gamble4_bet5_acct' AND data = ".$current_user->ID));
-		   $cb_g4_all_ur_bets = $cp_gamble4_bet1_results + $cp_gamble4_bet2_results + $cp_gamble4_bet3_results + $cp_gamble4_bet4_results + $cp_gamble4_bet5_results;
-		  }
-		  
-		  if(get_option('cp_gamble5_onoff')) {
-		   $cp_gamble5_acct = get_option('cp_gamble5_acct');
-		   $cp_gamble5_acct =  get_userdatabylogin($cp_gamble5_acct);
-		   $cp_gamble5_bet1_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble5_acct->ID."' AND type = 'cp_gamble5_bet1_acct' AND data = ".$current_user->ID));
-		   $cp_gamble5_bet2_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble5_acct->ID."' AND type = 'cp_gamble5_bet2_acct' AND data = ".$current_user->ID));
-		   $cp_gamble5_bet3_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble5_acct->ID."' AND type = 'cp_gamble5_bet3_acct' AND data = ".$current_user->ID));
-		   $cp_gamble5_bet4_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble5_acct->ID."' AND type = 'cp_gamble5_bet4_acct' AND data = ".$current_user->ID));
-		   $cp_gamble5_bet5_results = $wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM ".CUBEPTS3." WHERE uid='".$cp_gamble5_acct->ID."' AND type = 'cp_gamble5_bet5_acct' AND data = ".$current_user->ID));
-		   $cb_g5_all_ur_bets = $cp_gamble5_bet1_results + $cp_gamble5_bet2_results + $cp_gamble5_bet3_results + $cp_gamble5_bet4_results + $cp_gamble5_bet5_results;
-		  }
+		  if(get_option('cp_gamble1_onoff')) { $cb_g1_all_ur_bets = get_user_meta($current_user->ID, 'gamble1_bet_pts', true); }
+		  if(get_option('cp_gamble2_onoff')) { $cb_g2_all_ur_bets = get_user_meta($current_user->ID, 'gamble2_bet_pts', true); }
+		  if(get_option('cp_gamble3_onoff')) { $cb_g3_all_ur_bets = get_user_meta($current_user->ID, 'gamble3_bet_pts', true); }
+		  if(get_option('cp_gamble4_onoff')) { $cb_g4_all_ur_bets = get_user_meta($current_user->ID, 'gamble4_bet_pts', true); }
+		  if(get_option('cp_gamble5_onoff')) { $cb_g5_all_ur_bets = get_user_meta($current_user->ID, 'gamble5_bet_pts', true); }
 		  
 		  // If $lottery1on is 1 then that means they have at least 1 point entry. 
 		  if(get_option('cp_lottery1_onoff')) {

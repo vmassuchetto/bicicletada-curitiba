@@ -82,7 +82,15 @@ function bp_dtheme_setup() {
 	) );
 
 	// This theme allows users to set a custom background
-	add_custom_background( 'bp_dtheme_custom_background_style' );
+	// Backward-compatibility with WP < 3.4 will be removed in a future release
+	if ( 3.4 <= bp_get_major_wp_version() ) {
+		$custom_background_args = array(
+			'wp-head-callback' => 'bp_dtheme_custom_background_style'
+		);
+		add_theme_support( 'custom-background', $custom_background_args );
+	} else {
+		add_custom_background( 'bp_dtheme_custom_background_style' );
+	}
 
 	// Add custom header support if allowed
 	if ( !defined( 'BP_DTHEME_DISABLE_CUSTOM_HEADER' ) ) {
@@ -98,7 +106,16 @@ function bp_dtheme_setup() {
 		set_post_thumbnail_size( HEADER_IMAGE_WIDTH, HEADER_IMAGE_HEIGHT, true );
 
 		// Add a way for the custom header to be styled in the admin panel that controls custom headers.
-		add_custom_image_header( 'bp_dtheme_header_style', 'bp_dtheme_admin_header_style' );
+		// Backward-compatibility with WP < 3.4 will be removed in a future release
+		if ( 3.4 <= bp_get_major_wp_version() ) {
+			$custom_header_args = array(
+				'wp-head-callback' => 'bp_dtheme_header_style',
+				'admin-head-callback' => 'bp_dtheme_admin_header_style'
+			);
+			add_theme_support( 'custom-header', $custom_header_args );
+		} else {
+			add_custom_image_header( 'bp_dtheme_header_style', 'bp_dtheme_admin_header_style' );
+		}
 	}
 
 	if ( !is_admin() ) {
@@ -139,7 +156,7 @@ if ( !function_exists( 'bp_dtheme_enqueue_scripts' ) ) :
  */
 function bp_dtheme_enqueue_scripts() {
 	// Bump this when changes are made to bust cache
-	$version = '20111013';
+	$version = '20120110';
 
 	// Enqueue the global JS - Ajax will not work without it
 	wp_enqueue_script( 'dtheme-ajax-js', get_template_directory_uri() . '/_inc/global.js', array( 'jquery' ), $version );
@@ -180,9 +197,9 @@ if ( !function_exists( 'bp_dtheme_enqueue_styles' ) ) :
  * @since 1.5
  */
 function bp_dtheme_enqueue_styles() {
-	
+
 	// Bump this when changes are made to bust cache
-	$version = '20111013';
+	$version = '20120110';
 
 	// Register our main stylesheet
 	wp_register_style( 'bp-default-main', get_template_directory_uri() . '/_inc/css/default.css', array(), $version );
