@@ -1,20 +1,19 @@
 <?php
 
+    ini_set('display_errors', 1);
+
     $img_bg = 'img-bg.jpg';
     $img_cache = 'img-cache.jpg';
     $img_font = './freesansbold.ttf';
     $url = 'https://www.votolivre.org';
 
     function get_page ($url) {
-        $ch = curl_init ();
-        curl_setopt ($ch, CURLOPT_URL, $url);
-        curl_setopt ($ch, CURLOPT_RETURNTRANSFER, 1);
-        $data = curl_exec ($ch);
-        curl_close($ch);
+        $data = @file_get_contents($url);
         return $data;
     }
 
     function parse_count ($data) {
+        echo $data;
         preg_match ('/<h1>([0-9]*)<\/h1>/', $data, $m);
         return $m[1];
     }
