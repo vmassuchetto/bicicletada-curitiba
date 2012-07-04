@@ -13,7 +13,6 @@
     }
 
     function parse_count ($data) {
-        echo $data;
         preg_match ('/<h1>([0-9]*)<\/h1>/', $data, $m);
         return $m[1];
     }
